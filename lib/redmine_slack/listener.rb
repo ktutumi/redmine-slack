@@ -68,9 +68,10 @@ class SlackListener < Redmine::Hook::Listener
 			end
 		end
 
+    url = "#{url}&#{params.to_query}"
 		client = HTTPClient.new
 		client.ssl_config.cert_store.set_default_paths
-		client.post url, {:payload => params.to_json}
+    client.post url
 	end
 
 private
